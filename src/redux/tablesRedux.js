@@ -1,19 +1,9 @@
 
-import { API_URL } from "../config";
-
 
 const createActionName = actionName => `app/tables/${actionName}`;
 export const SET_TABLES = createActionName('SET_TABLES');
 export const UPDATE_TABLE = createActionName('UPDATE_TABLE');
 
-fetch(`${API_URL}/someEndpoint`)
-  .then(response => response.json())
-  .then(data => {
-   
-  })
-  .catch(error => {
-    
-  });
 
 const tablesReducer = (state = [], action) => {
   switch (action.type) {
