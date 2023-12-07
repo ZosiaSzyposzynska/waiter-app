@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setTables } from '../../../redux/tablesRedux';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../../../config';
 
 const Home = () => {
   const dispatch = useDispatch();
   const tables = useSelector((state) => state.tables);
 
   useEffect(() => {
-    fetch('http://localhost:3131/api/tables')
+    fetch(API_URL + '/tables')
       .then((response) => response.json())
       .then((data) => {
         dispatch(setTables(data));
