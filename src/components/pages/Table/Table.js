@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTable } from '../../../redux/tablesRedux';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../../../config';
 
 const Table = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const Table = () => {
       setMaxPeopleAmount(table.maxPeopleAmount);
       setBill(table.status === 'Busy' ? bill : 0);
     }
-  }, [table]);
+  }, [table], );
 
   const handleStatusChange = (newStatus) => {
     if (newStatus === 'Busy') {
@@ -62,7 +63,7 @@ const Table = () => {
       body: JSON.stringify(updatedTable)
     };
 
-    fetch(`http://localhost:3131/tables/${id}`, options)
+    fetch(API_URL + `/tables/${id}`, options)
       .then(response => {
         if (response.ok) {
           navigate('/');
