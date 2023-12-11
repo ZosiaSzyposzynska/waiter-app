@@ -10,12 +10,15 @@ const Home = () => {
   const tables = useSelector((state) => state.tables);
 
   useEffect(() => {
-    fetch(API_URL + '/tables')
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(setTables(data));
-      });
-  }, [dispatch]);
+  const isProduction = process.env.NODE_ENV === 'production';
+  const serverUrl = isProduction ? 'https://waiter-app.zosiaszyposzyns.repl.co/' : 'http://localhost:3131';
+
+  fetch(`${serverUrl}/api/tables`)
+    .then((response) => response.json())
+    .then((data) => {
+      dispatch(setTables(data));
+    });
+}, [dispatch]);
 
   return (
     <div>
