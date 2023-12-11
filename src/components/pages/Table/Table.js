@@ -63,7 +63,12 @@ const Table = () => {
       body: JSON.stringify(updatedTable)
     };
 
-    fetch(API_URL + `/tables/${id}`, options)
+
+const isProduction = process.env.NODE_ENV === 'production';
+  const serverUrl = isProduction ? 'https://waiter-app.zosiaszyposzyns.repl.co/' : 'http://localhost:3131';
+
+  fetch(`${serverUrl}/api/tables/${id}`, options)
+    
       .then(response => {
         if (response.ok) {
           navigate('/');
